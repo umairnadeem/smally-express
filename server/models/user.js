@@ -44,6 +44,24 @@ class Users extends Model {
 
     return super.create.call(this, newUser);
   }
+
+  userExists({username}) {
+    return super.get.call(this, {username});
+  }
+
+  // get(options) {
+  //   // 
+  //   return super.get.call(this, options)
+  //     .then(session => {
+  //       if (!session || !session.userId) {
+  //         return session;
+  //       }
+  //       return Users.get({ id: session.userId }).then(user => {
+  //         session.user = user;
+  //         return session;
+  //       });
+  //     });
+  // }
 }
 
 module.exports = new Users();

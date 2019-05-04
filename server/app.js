@@ -78,6 +78,33 @@ app.post('/links',
 // Write your authentication routes here
 /************************************************************/
 
+app.post('/signup', (req, res, next) => {
+  models.Users.userExists({username: req.body.username})
+    .then(result => !!result).then(x => {
+      if (x) {
+        res.redirect('/signup');
+      } else {
+        models.Users.create({username: req.body.username, password: req.body.password });
+        res.redirect('/');
+      }
+    });
+});
+
+app.post('/login', (req, res, next) => {
+  // does user exist?
+  // does user password match the password from server?
+  // if so, then redirect to /
+  models.Users.userExists({username: req.body.username})
+    .then((result) => {
+      // console.log(req.body.password)
+      return models.Users.compare(req.body.password, result.password, result.salt)})
+    .then((boolean) => {
+      console.log(boolean)
+      if (boolean) {
+        res.redirect('/');
+      }
+    })
+})
 
 
 /************************************************************/

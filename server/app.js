@@ -96,14 +96,16 @@ app.post('/login', (req, res, next) => {
   // if so, then redirect to /
   models.Users.userExists({username: req.body.username})
     .then((result) => {
-      // console.log(req.body.password)
-      return models.Users.compare(req.body.password, result.password, result.salt)})
+      var password = result ? result.password : null;
+      var salt = result ? result.salt : null;
+      return models.Users.compare(req.body.password, password, salt)})
     .then((boolean) => {
-      console.log(boolean)
       if (boolean) {
         res.redirect('/');
+      } else {
+        res.redirect('/login')
       }
-    })
+    });
 })
 
 

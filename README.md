@@ -35,10 +35,6 @@ Expected output: Listening on port 3000
 * [Express.js](http://www.dropwizard.io/1.0.2/docs/) - The Node server library used
 * [Mongoose](https://maven.apache.org/) - DBMS
 
-## Authors
-
-* **Umair Nadeem** - *Initial work* - [umairnadeem123](https://github.com/umairnadeem123)
-
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details
